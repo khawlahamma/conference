@@ -116,6 +116,8 @@ Si vous rencontrez des problèmes :
   - Thème clair/sombre
   - Interface responsive
 
+![page ACCUIEL:](image.png)
+
 ## Support
 
 Pour toute question ou problème, veuillez :
