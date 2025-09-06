@@ -1,0 +1,67 @@
+﻿<Window x:Class="ConferenceManager.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConferenceManager.WPF"
+        xmlns:views="clr-namespace:ConferenceManager.WPF.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Gestionnaire de Conférences" 
+        Height="720" 
+        Width="1280"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu latéral -->
+        <materialDesign:Card Grid.Column="0" Background="#FF2C3E50">
+            <StackPanel>
+                <TextBlock Text="Gestionnaire de Conférences"
+                           Foreground="White"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="20,20,20,40"
+                           TextWrapping="Wrap"/>
+
+                <Button Content="Accueil"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding NavigateToHomeCommand}"/>
+
+                <Button Content="Recherche avancée"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding NavigateToSearchCommand}"/>
+
+                <Button Content="Documents"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding NavigateToDocumentsCommand}"/>
+
+                <Button Content="Intervenants"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding NavigateToSpeakersCommand}"/>
+
+                <Button Content="Profil"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding NavigateToProfileCommand}"/>
+
+                <Button Content="Quitter"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding ExitCommand}"/>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <!-- Contenu principal -->
+        <Grid Grid.Column="1">
+            <views:MainView DataContext="{Binding}"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,53 @@
+<UserControl x:Class="ConferenceManager.WPF.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ConferenceManager.WPF.Views"
+             xmlns:vm="clr-namespace:ConferenceManager.WPF.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:DocumentsViewModel}">
+            <local:DocumentsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdvancedSearchViewModel}">
+            <local:AdvancedSearchView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SpeakersViewModel}">
+            <local:SpeakersView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
+            <local:ProfileView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Error Message -->
+        <materialDesign:Card Grid.Row="0" Margin="0,0,0,20" Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}">
+            <StackPanel Margin="16">
+                <TextBlock Text="{Binding ErrorMessage}"
+                           Foreground="Red"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <!-- Loading Overlay -->
+        <Grid Grid.Row="1" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <materialDesign:Card Background="White" Opacity="0.8"/>
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                        Value="0"
+                        IsIndeterminate="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Main Content -->
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}" />
+    </Grid>
+</UserControl> 

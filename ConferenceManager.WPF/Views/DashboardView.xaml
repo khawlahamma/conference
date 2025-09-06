@@ -1,0 +1,119 @@
+<UserControl x:Class="ConferenceManager.WPF.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Welcome Section -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Bienvenue dans le gestionnaire de conférences"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Margin="0,0,0,10"/>
+            <TextBlock Text="Gérez vos conférences, intervenants et documents en toute simplicité"
+                       FontSize="16"
+                       Foreground="Gray"/>
+        </StackPanel>
+        <!-- Dashboard Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Quick Stats -->
+            <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,10,20">
+                <TextBlock Text="Statistiques rapides"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:Card Grid.Column="0" Margin="0,0,5,0" Background="#E3F2FD">
+                        <StackPanel Margin="15">
+                            <TextBlock Text="Conférences"
+                                       FontSize="14"
+                                       Foreground="#1976D2"/>
+                            <TextBlock Text="{Binding ConferenceCount}"
+                                       FontSize="24"
+                                       FontWeight="Bold"
+                                       Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <materialDesign:Card Grid.Column="1" Margin="5,0,0,0" Background="#E8F5E9">
+                        <StackPanel Margin="15">
+                            <TextBlock Text="Intervenants"
+                                       FontSize="14"
+                                       Foreground="#2E7D32"/>
+                            <TextBlock Text="{Binding SpeakerCount}"
+                                       FontSize="24"
+                                       FontWeight="Bold"
+                                       Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </Grid>
+            </StackPanel>
+            <!-- Quick Actions -->
+            <StackPanel Grid.Column="1" Grid.Row="0" Margin="10,0,0,20">
+                <TextBlock Text="Actions rapides"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,10"/>
+                <WrapPanel>
+                    <Button Content="Nouvelle conférence"
+                            Margin="0,0,10,0"
+                            Padding="15,8"
+                            Command="{Binding CreateNewConferenceCommand}"/>
+                    <Button Content="Nouvel intervenant"
+                            Margin="0,0,10,0"
+                            Padding="15,8"
+                            Command="{Binding CreateNewSpeakerCommand}"/>
+                    <Button Content="Nouveau document"
+                            Padding="15,8"
+                            Command="{Binding CreateNewDocumentCommand}"/>
+                </WrapPanel>
+            </StackPanel>
+            <!-- Recent Activity -->
+            <materialDesign:Card Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Activité récente"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+                    <ItemsControl ItemsSource="{Binding RecentActivities}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Type}"
+                                                   Foreground="#1976D2"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Description}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Date, StringFormat=d}"
+                                                   Foreground="Gray"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</UserControl> 

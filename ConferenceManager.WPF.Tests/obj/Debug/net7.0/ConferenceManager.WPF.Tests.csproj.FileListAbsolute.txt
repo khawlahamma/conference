@@ -1,0 +1,5 @@
+C:\XAMPP\htdocs\conference\ConferenceManager.WPF.Tests\obj\Debug\net7.0\ConferenceManager.WPF.Tests.csproj.AssemblyReference.cache
+C:\XAMPP\htdocs\conference\ConferenceManager.WPF.Tests\obj\Debug\net7.0\ConferenceManager.WPF.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\XAMPP\htdocs\conference\ConferenceManager.WPF.Tests\obj\Debug\net7.0\ConferenceManager.WPF.Tests.AssemblyInfoInputs.cache
+C:\XAMPP\htdocs\conference\ConferenceManager.WPF.Tests\obj\Debug\net7.0\ConferenceManager.WPF.Tests.AssemblyInfo.cs
+C:\XAMPP\htdocs\conference\ConferenceManager.WPF.Tests\obj\Debug\net7.0\ConferenceManager.WPF.Tests.csproj.CoreCompileInputs.cache

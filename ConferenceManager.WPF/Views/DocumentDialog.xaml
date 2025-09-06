@@ -1,0 +1,84 @@
+<Window x:Class="ConferenceManager.WPF.Views.DocumentDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConferenceManager.WPF.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Document" Height="500" Width="600"
+        WindowStartupLocation="CenterOwner"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Titre" Grid.Row="0" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,0,0,5"/>
+        <TextBox x:Name="TitleTextBox" Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Titre" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Description" Grid.Row="2" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,0,0,5"/>
+        <TextBox x:Name="DescriptionTextBox" Grid.Row="3" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Description" Margin="0,0,0,10" TextWrapping="Wrap" AcceptsReturn="True" Height="60"/>
+
+        <TextBlock Text="Conférence" Grid.Row="4" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,0,0,5"/>
+        <ComboBox x:Name="ConferenceComboBox"
+                  Grid.Row="5"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Sélectionner une conférence"
+                  Margin="0,0,0,10"
+                  ItemsSource="{Binding Conferences}"
+                  SelectedItem="{Binding Conference, Mode=TwoWay}"
+                  DisplayMemberPath="Title"/>
+
+        <TextBlock Text="Type de document" Grid.Row="6" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,0,0,5"/>
+        <ComboBox x:Name="DocumentTypeComboBox" Grid.Row="7" Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:HintAssist.Hint="Type de document" Margin="0,0,0,10">
+            <ComboBoxItem Content="Présentation"/>
+            <ComboBoxItem Content="Article"/>
+            <ComboBoxItem Content="Résumé"/>
+            <ComboBoxItem Content="Autre"/>
+        </ComboBox>
+
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                <TextBlock Text="Date" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,0,0,5"/>
+                <DatePicker x:Name="DatePicker" Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:HintAssist.Hint="Date"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock Text="Statut" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,0,0,5"/>
+                <ComboBox x:Name="StatusComboBox" Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:HintAssist.Hint="Statut">
+                    <ComboBoxItem Content="Brouillon"/>
+                    <ComboBoxItem Content="En révision"/>
+                    <ComboBoxItem Content="Approuvé"/>
+                    <ComboBoxItem Content="Rejeté"/>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <CheckBox x:Name="IsPublicCheckBox" Grid.Row="9" Content="Document public" Style="{StaticResource MaterialDesignCheckBox}" Margin="0,10"/>
+
+        <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Enregistrer" Style="{StaticResource MaterialDesignRaisedButton}" Click="Save_Click" Width="100" Margin="0,0,10,0"/>
+            <Button Content="Annuler" Style="{StaticResource MaterialDesignOutlinedButton}" Click="Cancel_Click" Width="100"/>
+        </StackPanel>
+    </Grid>
+</Window> 
